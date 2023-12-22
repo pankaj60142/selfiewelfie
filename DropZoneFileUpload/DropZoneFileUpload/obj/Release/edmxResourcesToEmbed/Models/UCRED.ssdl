@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="localhostModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UCRED">
+    <Key>
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="EMAIL" Type="varchar" MaxLength="400" Nullable="false" />
+    <Property Name="PASSWORD" Type="nvarchar(max)" />
+    <Property Name="ZIPCODE" Type="int" />
+    <Property Name="USERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UFILEID">
+    <Key>
+      <PropertyRef Name="FILEID" />
+    </Key>
+    <Property Name="FILEID" Type="bigint" Nullable="false" />
+    <Property Name="RROSE" Type="int" />
+    <Property Name="WROSE" Type="int" />
+    <Property Name="RTIME" Type="datetime" />
+    <Property Name="WTIME" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UINFO">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="ADDRESS1" Type="varchar" MaxLength="400" />
+    <Property Name="ADDRESS2" Type="varchar" MaxLength="400" />
+    <Property Name="CITY" Type="varchar" MaxLength="100" />
+    <Property Name="ZIPCODE" Type="int" />
+    <Property Name="STATE" Type="varchar" MaxLength="100" />
+    <Property Name="COUNTRY" Type="varchar" MaxLength="500" />
+    <Property Name="IPADRESS" Type="nvarchar" MaxLength="500" />
+    <Property Name="InsertDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UUPLD">
+    <Key>
+      <PropertyRef Name="USERID" />
+      <PropertyRef Name="FILEID" />
+    </Key>
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="FILEPATH" Type="nvarchar(max)" />
+    <Property Name="FILENAME" Type="varchar(max)" />
+    <Property Name="FILEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="UImage" Type="image" />
+    <Property Name="UImageB64" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityContainer Name="localhostModelStoreContainer">
+    <EntitySet Name="UCRED" EntityType="Self.UCRED" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UFILEID" EntityType="Self.UFILEID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UINFO" EntityType="Self.UINFO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UUPLD" EntityType="Self.UUPLD" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

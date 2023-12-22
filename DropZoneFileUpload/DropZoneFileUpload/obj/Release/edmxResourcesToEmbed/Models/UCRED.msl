@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="localhostModelStoreContainer" CdmEntityContainer="localhostEntities">
+    <EntitySetMapping Name="UCREDs">
+      <EntityTypeMapping TypeName="localhostModel.UCRED">
+        <MappingFragment StoreEntitySet="UCRED">
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UFILEIDs">
+      <EntityTypeMapping TypeName="localhostModel.UFILEID">
+        <MappingFragment StoreEntitySet="UFILEID">
+          <ScalarProperty Name="FILEID" ColumnName="FILEID" />
+          <ScalarProperty Name="RROSE" ColumnName="RROSE" />
+          <ScalarProperty Name="WROSE" ColumnName="WROSE" />
+          <ScalarProperty Name="RTIME" ColumnName="RTIME" />
+          <ScalarProperty Name="WTIME" ColumnName="WTIME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UINFOes">
+      <EntityTypeMapping TypeName="localhostModel.UINFO">
+        <MappingFragment StoreEntitySet="UINFO">
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+          <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+          <ScalarProperty Name="CITY" ColumnName="CITY" />
+          <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+          <ScalarProperty Name="STATE" ColumnName="STATE" />
+          <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+          <ScalarProperty Name="IPADRESS" ColumnName="IPADRESS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UUPLDs">
+      <EntityTypeMapping TypeName="localhostModel.UUPLD">
+        <MappingFragment StoreEntitySet="UUPLD">
+          <ScalarProperty Name="UImageB64" ColumnName="UImageB64" />
+          <ScalarProperty Name="UImage" ColumnName="UImage" />
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="FILEPATH" ColumnName="FILEPATH" />
+          <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+          <ScalarProperty Name="FILEID" ColumnName="FILEID" />
+          <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

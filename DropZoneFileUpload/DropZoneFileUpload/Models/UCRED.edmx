@@ -1,0 +1,308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="localhostModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="UCRED">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="EMAIL" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="PASSWORD" Type="nvarchar(max)" />
+          <Property Name="ZIPCODE" Type="int" />
+          <Property Name="USERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UFILEID">
+          <Key>
+            <PropertyRef Name="FILEID" />
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="FILEID" Type="bigint" Nullable="false" />
+          <Property Name="RROSE" Type="int" />
+          <Property Name="WROSE" Type="int" />
+          <Property Name="RTIME" Type="datetime" />
+          <Property Name="WTIME" Type="datetime" />
+          <Property Name="USERID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'localhost.dbo.UGAME' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UGAME">
+          <Key>
+            <PropertyRef Name="GameID" />
+            <PropertyRef Name="GameStartDate" />
+          </Key>
+          <Property Name="GameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GameName" Type="varchar" MaxLength="500" />
+          <Property Name="GameStartDate" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="GameEndDate" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="UGCINFO">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="InsertDate" Type="datetime" Nullable="false" />
+          <Property Name="FileID" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="NetLikes" Type="int" Nullable="false" />
+          <Property Name="GcNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="GcAmount" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="GcBarCode" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="GcName" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="GcEmailNotification" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GcMailed" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UINFO">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="int" Nullable="false" />
+          <Property Name="ADDRESS1" Type="varchar" MaxLength="400" />
+          <Property Name="ADDRESS2" Type="varchar" MaxLength="400" />
+          <Property Name="CITY" Type="varchar" MaxLength="100" />
+          <Property Name="ZIPCODE" Type="int" />
+          <Property Name="STATE" Type="varchar" MaxLength="100" />
+          <Property Name="COUNTRY" Type="varchar" MaxLength="500" />
+          <Property Name="IPADRESS" Type="nvarchar" MaxLength="500" />
+          <Property Name="InsertDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UUPLD">
+          <Key>
+            <PropertyRef Name="USERID" />
+            <PropertyRef Name="FILEID" />
+          </Key>
+          <Property Name="USERID" Type="int" Nullable="false" />
+          <Property Name="FILEPATH" Type="nvarchar(max)" />
+          <Property Name="FILENAME" Type="varchar(max)" />
+          <Property Name="FILEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CREATED_DATE" Type="datetime" />
+          <Property Name="UImage" Type="image" />
+          <Property Name="UImageB64" Type="nvarchar(max)" />
+          <Property Name="is_deleted" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="localhostModelStoreContainer">
+          <EntitySet Name="UCRED" EntityType="Self.UCRED" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UFILEID" EntityType="Self.UFILEID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UGCINFO" EntityType="Self.UGCINFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UINFO" EntityType="Self.UINFO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UUPLD" EntityType="Self.UUPLD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UGAME" EntityType="Self.UGAME" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UGAME].[GameID] AS [GameID], 
+    [UGAME].[GameName] AS [GameName], 
+    [UGAME].[GameStartDate] AS [GameStartDate], 
+    [UGAME].[GameEndDate] AS [GameEndDate], 
+    [UGAME].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[UGAME] AS [UGAME]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="localhostModel" Alias="Self" annotation:UseStrongSpatialTypes="false"
+              xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation"
+              xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation"
+              xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="UCRED">
+          <Key>
+            <PropertyRef Name="EMAIL" />
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="EMAIL" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZIPCODE" Type="Int32" />
+          <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UFILEID">
+          <Key>
+            <PropertyRef Name="FILEID" />
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="FILEID" Type="Int64" Nullable="false" />
+          <Property Name="RROSE" Type="Int32" />
+          <Property Name="WROSE" Type="Int32" />
+          <Property Name="RTIME" Type="DateTime" Precision="3" />
+          <Property Name="WTIME" Type="DateTime" Precision="3" />
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UINFO">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="ADDRESS1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS2" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ZIPCODE" Type="Int32" />
+          <Property Name="STATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="COUNTRY" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="IPADRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="InsertDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UUPLD">
+          <Key>
+            <PropertyRef Name="USERID" />
+            <PropertyRef Name="FILEID" />
+          </Key>
+          <Property Name="USERID" Type="Int32" Nullable="false" />
+          <Property Name="FILEPATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FILENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FILEID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+          <Property Name="UImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="UImageB64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="is_deleted" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="localhostEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UCREDs" EntityType="Self.UCRED" />
+          <EntitySet Name="UFILEIDs" EntityType="Self.UFILEID" />
+          <EntitySet Name="UINFOes" EntityType="Self.UINFO" />
+          <EntitySet Name="UUPLDs" EntityType="Self.UUPLD" />
+          <EntitySet Name="UGCINFOes" EntityType="localhostModel.UGCINFO" />
+          <EntitySet Name="UGAMEs" EntityType="localhostModel.UGAME" />
+        </EntityContainer>
+        <EntityType Name="UGCINFO">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="InsertDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FileID" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NetLikes" Type="Int32" Nullable="false" />
+          <Property Name="GcNumber" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="GcAmount" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="GcBarCode" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="GcName" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="GcEmailNotification" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GcMailed" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModifiedBy" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UGAME">
+          <Key>
+            <PropertyRef Name="GameID" />
+            <PropertyRef Name="GameStartDate" />
+          </Key>
+          <Property Name="GameID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GameName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="GameStartDate" Type="DateTime" Nullable="false" annotation:StoreGeneratedPattern="Computed" Precision="3" />
+          <Property Name="GameEndDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="localhostModelStoreContainer"
+                                CdmEntityContainer="localhostEntities">
+          <EntitySetMapping Name="UCREDs">
+            <EntityTypeMapping TypeName="localhostModel.UCRED">
+              <MappingFragment StoreEntitySet="UCRED">
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UFILEIDs">
+            <EntityTypeMapping TypeName="localhostModel.UFILEID">
+              <MappingFragment StoreEntitySet="UFILEID">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="FILEID" ColumnName="FILEID" />
+                <ScalarProperty Name="RROSE" ColumnName="RROSE" />
+                <ScalarProperty Name="WROSE" ColumnName="WROSE" />
+                <ScalarProperty Name="RTIME" ColumnName="RTIME" />
+                <ScalarProperty Name="WTIME" ColumnName="WTIME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UINFOes">
+            <EntityTypeMapping TypeName="localhostModel.UINFO">
+              <MappingFragment StoreEntitySet="UINFO">
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="ADDRESS1" ColumnName="ADDRESS1" />
+                <ScalarProperty Name="ADDRESS2" ColumnName="ADDRESS2" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ZIPCODE" ColumnName="ZIPCODE" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="IPADRESS" ColumnName="IPADRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UUPLDs">
+            <EntityTypeMapping TypeName="localhostModel.UUPLD">
+              <MappingFragment StoreEntitySet="UUPLD">
+                <ScalarProperty Name="is_deleted" ColumnName="is_deleted" />
+                <ScalarProperty Name="UImageB64" ColumnName="UImageB64" />
+                <ScalarProperty Name="UImage" ColumnName="UImage" />
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="FILEPATH" ColumnName="FILEPATH" />
+                <ScalarProperty Name="FILENAME" ColumnName="FILENAME" />
+                <ScalarProperty Name="FILEID" ColumnName="FILEID" />
+                <ScalarProperty Name="CREATED_DATE" ColumnName="CREATED_DATE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UGCINFOes">
+            <EntityTypeMapping TypeName="localhostModel.UGCINFO">
+              <MappingFragment StoreEntitySet="UGCINFO">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="GcMailed" ColumnName="GcMailed" />
+                <ScalarProperty Name="GcEmailNotification" ColumnName="GcEmailNotification" />
+                <ScalarProperty Name="GcName" ColumnName="GcName" />
+                <ScalarProperty Name="GcBarCode" ColumnName="GcBarCode" />
+                <ScalarProperty Name="GcAmount" ColumnName="GcAmount" />
+                <ScalarProperty Name="GcNumber" ColumnName="GcNumber" />
+                <ScalarProperty Name="NetLikes" ColumnName="NetLikes" />
+                <ScalarProperty Name="FileID" ColumnName="FileID" />
+                <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UGAMEs">
+            <EntityTypeMapping TypeName="localhostModel.UGAME">
+              <MappingFragment StoreEntitySet="UGAME">
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="GameEndDate" ColumnName="GameEndDate" />
+                <ScalarProperty Name="GameStartDate" ColumnName="GameStartDate" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="GameID" ColumnName="GameID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,259 @@
+﻿body {
+    padding-bottom: 20px;
+    padding-top: 50px;
+}
+
+/* Set padding to keep content from hitting the edges */
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.likeImage {
+    background-image: url("http://yaaya.mobi/images/fbLike.png");
+    background-repeat: no-repeat;
+    height: 95px;
+    width: 275px;
+}
+
+    .likeImage iframe {
+        opacity: 0;
+    }
+
+.navbar-inverse {
+    background-color: lightskyblue;
+    border-color: #080808;
+}
+
+    .navbar-inverse .navbar-nav > li > a:hover,
+    .navbar-inverse .navbar-nav > li > a:focus {
+        color: RED;
+        background-color: transparent;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: BLACK;
+        /* Keep BOLD PVP*/
+    }
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.428571429;
+    color: #333333;
+    background-color: lightblue;
+}
+
+.centered {
+    margin: 0 auto;
+    text-align: left;
+    width: 800px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid BLACK;
+}
+
+#btnClear {
+    margin-left: 100px;
+}
+
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+}
+
+.dropzone .dz-default.dz-message {
+    opacity: 1;
+    -ms-filter: none;
+    filter: none;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -moz-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    -ms-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    background-image: url("../images/spritemap.png");
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    position: absolute;
+    width: 42px;
+    height: 10px;
+    margin-left: -214px;
+    margin-top: -61.5px;
+    top: 50%;
+    left: 50%;
+}
+
+.container .jumbotron {
+    padding-right: 6px;
+    padding-left: 6px;
+}
+
+.dropzone {
+    border: 1px solid rgba(0,0,0,0.03);
+    min-height: 160px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: rgba(0,0,0,0.03);
+    padding: 23px;
+}
+
+.dropzone-previews .dz-preview .dz-details img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 00px;
+    height: 200px;
+}
+
+/* HOVER BUTTON CODE*/
+
+div.show-image {
+    /*position: relative;
+    float:left;
+    margin:1px;
+    height: 100%;*/
+    position: relative;
+    float: left;
+    /*width:  50%;
+    height: 50%;*/
+    /*width: 50% ;
+  height: auto ;*/
+}
+
+    div.show-image:hover img {
+        opacity: 0.5;
+    }
+
+    div.show-image:hover input {
+        display: block;
+    }
+
+    div.show-image input {
+        position: absolute;
+        display: none;
+        width: 55px;
+        height: 25px;
+        font-size: 15px;
+    }
+
+        div.show-image input.Like {
+            top: 50%;
+            left: 5%;
+            background-color:#FF6347 ;
+            opacity: 1.0;
+            -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+        }
+
+        div.show-image input.Dislike {
+            top: 50%;
+            left: 50%;
+            background-color: #FFFFFF;
+            opacity: 1.0;
+                        -moz-border-radius: 25px;
+            -webkit-border-radius: 25px;
+
+        }
+
+div.show-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/*CAT CSS CODE*/
+
+#photos {
+    /* Prevent vertical gaps */
+    line-height: 0;
+    -webkit-column-count: 5;
+    -webkit-column-gap: 0px;
+    -moz-column-count: 5;
+    -moz-column-gap: 0px;
+    column-count: 5;
+    column-gap: 0px;
+}
+
+    #photos img {
+        /* Just in case there are inline attributes */
+        width: 100% !important;
+        height: auto !important;
+    }
+@media (max-width: 2500px) {
+    #photos {
+        -moz-column-count: 8;
+        -webkit-column-count: 8;
+        column-count: 8;
+    }
+}
+@media (max-width: 1200px) {
+    #photos {
+        -moz-column-count: 4;
+        -webkit-column-count: 4;
+        column-count: 4;
+    }
+}
+
+@media (max-width: 1000px) {
+    #photos {
+        -moz-column-count: 3;
+        -webkit-column-count: 3;
+        column-count: 3;
+    }
+}
+
+@media (max-width: 800px) {
+    #photos {
+        -moz-column-count: 2;
+        -webkit-column-count: 2;
+        column-count: 2;
+    }
+}
+
+@media (max-width: 400px) {
+    #photos {
+        -moz-column-count: 1;
+        -webkit-column-count: 1;
+        column-count: 1;
+    }
+}

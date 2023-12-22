@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "My Uploads";
+}
+<h2>My Uploads</h2>
+<div class="jumbotron">
+    <h3>Top 5</h3>
+    <form action="~/Home/Get5Attachments" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm5">
+        <div class="likeImage">
+            <iframe src="//www.facebook.com/plugins/like.php?href=google.com.ar&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=20" scrolling="no" frameborder="0" style="border: none; overflow: hidden; width: 100px; height: 20px;" allowTransparency="true"></iframe>
+        </div>
+        <div class="fallback">
+
+            <input name="file" type="file" multiple/>
+
+            <input type="submit" value="Upload"/>
+        </div>
+
+    </form>
+</div>
+<section id="photos">
+    <img src="/images/wallimages/imagepath/P1010001.JPG" alt="Cute cat">
+    <img src="/images/wallimages/imagepath/P2030075.PNG" alt="Serious cat">
+    <img src="/images/wallimages/imagepath/P3020082.JPG" alt="Cute cat">
+    <img src="/images/wallimages/imagepath/BBollL01.jpg" alt="Cute cat">
+    <img src="/images/wallimages/imagepath/PC030068.JPG" alt="Serious cat">
+
+    <img src="/images/wallimages/imagepath/P3020085.JPG" alt="Cute cat">
+    <img src="/images/wallimages/imagepath/P3020086.JPG" alt="Serious cat">
+
+    <img src="/images/wallimages/imagepath/P6230090.JPG" alt="Cute cat">
+    <img src="/images/wallimages/imagepath/PB220048.JPG" alt="Serious cat">
+
+
+</section>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        Dropzone.options.dropzoneForm5 = {
+            acceptedFiles: "image/*",
+            init: function () {
+                var thisDropzone = this;
+
+
+                $.getJSON("/home/Get5Attachments/").done(function (data) {
+                    if (data.Data !== '') {
+
+                        $.each(data.Data, function (index, item) {
+                                //// Create the mock file:
+                                var mockFile = {
+                                    name: item.AttachmentID,
+                                    size: 12345
+                                };
+
+                                // Call the default addedfile event handler
+                                thisDropzone.emit("addedfile", mockFile);
+
+                                // And optionally show the thumbnail of the file:
+                                thisDropzone.emit("thumbnail", mockFile, item.Path);
+
+                                // If you use the maxFiles option, make sure you adjust it to the
+                                // correct amount:
+                                //var existingFileCount = 1; // The number of files already uploaded
+                                //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+                        });
+                    }
+
+                });
+
+
+            }
+        };
+    
+    </script>
+}

@@ -1,0 +1,72 @@
+﻿@using System.Reflection
+@model  List<DropZoneFileUpload.Models.AttachmentsModel>
+@{
+    ViewBag.Title = "My Uploads";
+
+    }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<h2>Top Uploads</h2>
+
+
+<div class="">
+    <h3>Top Photos</h3>
+    <button onclick="location.href = '@Url.Action("MyUploads", "Home")'">
+        MyUploads
+    </button>
+</div>
+<section id="photos">
+    @foreach (var item in Model)
+    {
+
+        <div class="show-image">
+            <img alt="Embedded Image" src="data:image/png;base64,@Html.DisplayFor(modelItem => item.UImageB64)" />
+            <input id="Like_@item.AttachmentID" class="Like" type="button" value="@item.RROSE" onclick="MyLikeJsFunction('@item.AttachmentID')"/>
+
+            <input id="DisLike_@item.AttachmentID" class="Dislike" type="button" value="@item.WROSE" onclick="MyDisLikeJsFunction('@item.AttachmentID')" />
+
+        </div>
+    }
+</section>
+  
+    @section Scripts
+    {
+        <script type="text/javascript">
+
+            function MyLikeJsFunction(attachmentId) {
+                   $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("InsertRRose", "Home")',
+                        contentType: "application/json; charset=utf-8",
+                        cache: false,
+                        data: { "fileId": attachmentId },
+                        dataType: "json",
+                        success: function(results) {
+                            document.getElementById("Like_" + attachmentId).value = results.like;
+                            document.getElementById("DisLike_" + attachmentId).value = results.dislike;
+                        },
+                        error: function () {alert('Error');
+                        }
+                    });
+
+            }
+
+            function MyDisLikeJsFunction(attachmentId) {
+               $.ajax({
+                        type: "GET",
+                        url: '@Url.Action("InsertWRose", "Home")',
+                        contentType: "application/json; charset=utf-8",
+                        cache: false,
+                        data: { "fileId": attachmentId },
+                        dataType: "json",
+                        success: function (results) {
+                            document.getElementById("DisLike_" + attachmentId).value = results.dislike;
+                            document.getElementById("Like_" + attachmentId).value = results.like;
+                        },
+                        error: function () {alert('Error');
+                        }
+                    });
+            }
+
+        </script>
+    }

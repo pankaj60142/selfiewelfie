@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="localhostModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="UCRED">
+    <Key>
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="EMAIL" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ZIPCODE" Type="Int32" />
+    <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UFILEID">
+    <Key>
+      <PropertyRef Name="FILEID" />
+    </Key>
+    <Property Name="FILEID" Type="Int64" Nullable="false" />
+    <Property Name="RROSE" Type="Int32" />
+    <Property Name="WROSE" Type="Int32" />
+    <Property Name="RTIME" Type="DateTime" Precision="3" />
+    <Property Name="WTIME" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UINFO">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" />
+    <Property Name="ADDRESS1" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="ADDRESS2" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+    <Property Name="CITY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ZIPCODE" Type="Int32" />
+    <Property Name="STATE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="COUNTRY" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IPADRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="InsertDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UUPLD">
+    <Key>
+      <PropertyRef Name="USERID" />
+      <PropertyRef Name="FILEID" />
+    </Key>
+    <Property Name="USERID" Type="Int32" Nullable="false" />
+    <Property Name="FILEPATH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FILENAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FILEID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CREATED_DATE" Type="DateTime" Precision="3" />
+    <Property Name="UImage" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="UImageB64" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="localhostEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="UCREDs" EntityType="Self.UCRED" />
+    <EntitySet Name="UFILEIDs" EntityType="Self.UFILEID" />
+    <EntitySet Name="UINFOes" EntityType="Self.UINFO" />
+    <EntitySet Name="UUPLDs" EntityType="Self.UUPLD" />
+  </EntityContainer>
+</Schema>

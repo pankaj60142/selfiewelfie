@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="localhostModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="UCRED">
+    <Key>
+      <PropertyRef Name="EMAIL" />
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="EMAIL" Type="varchar" MaxLength="400" Nullable="false" />
+    <Property Name="PASSWORD" Type="nvarchar(max)" />
+    <Property Name="ZIPCODE" Type="int" />
+    <Property Name="USERID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UFILEID">
+    <Key>
+      <PropertyRef Name="FILEID" />
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="FILEID" Type="bigint" Nullable="false" />
+    <Property Name="RROSE" Type="int" />
+    <Property Name="WROSE" Type="int" />
+    <Property Name="RTIME" Type="datetime" />
+    <Property Name="WTIME" Type="datetime" />
+    <Property Name="USERID" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'localhost.dbo.UGAME' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UGAME">
+    <Key>
+      <PropertyRef Name="GameID" />
+      <PropertyRef Name="GameStartDate" />
+    </Key>
+    <Property Name="GameID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GameName" Type="varchar" MaxLength="500" />
+    <Property Name="GameStartDate" Type="datetime" StoreGeneratedPattern="Computed" Nullable="false" />
+    <Property Name="GameEndDate" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="UGCINFO">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="InsertDate" Type="datetime" Nullable="false" />
+    <Property Name="FileID" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="NetLikes" Type="int" Nullable="false" />
+    <Property Name="GcNumber" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GcAmount" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GcBarCode" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GcName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="GcEmailNotification" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GcMailed" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="500" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UINFO">
+    <Key>
+      <PropertyRef Name="USERID" />
+    </Key>
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="ADDRESS1" Type="varchar" MaxLength="400" />
+    <Property Name="ADDRESS2" Type="varchar" MaxLength="400" />
+    <Property Name="CITY" Type="varchar" MaxLength="100" />
+    <Property Name="ZIPCODE" Type="int" />
+    <Property Name="STATE" Type="varchar" MaxLength="100" />
+    <Property Name="COUNTRY" Type="varchar" MaxLength="500" />
+    <Property Name="IPADRESS" Type="nvarchar" MaxLength="500" />
+    <Property Name="InsertDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UUPLD">
+    <Key>
+      <PropertyRef Name="USERID" />
+      <PropertyRef Name="FILEID" />
+    </Key>
+    <Property Name="USERID" Type="int" Nullable="false" />
+    <Property Name="FILEPATH" Type="nvarchar(max)" />
+    <Property Name="FILENAME" Type="varchar(max)" />
+    <Property Name="FILEID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CREATED_DATE" Type="datetime" />
+    <Property Name="UImage" Type="image" />
+    <Property Name="UImageB64" Type="nvarchar(max)" />
+    <Property Name="is_deleted" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="localhostModelStoreContainer">
+    <EntitySet Name="UCRED" EntityType="Self.UCRED" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UFILEID" EntityType="Self.UFILEID" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UGCINFO" EntityType="Self.UGCINFO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UINFO" EntityType="Self.UINFO" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UUPLD" EntityType="Self.UUPLD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UGAME" EntityType="Self.UGAME" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UGAME].[GameID] AS [GameID], 
+    [UGAME].[GameName] AS [GameName], 
+    [UGAME].[GameStartDate] AS [GameStartDate], 
+    [UGAME].[GameEndDate] AS [GameEndDate], 
+    [UGAME].[ModifiedBy] AS [ModifiedBy]
+    FROM [dbo].[UGAME] AS [UGAME]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

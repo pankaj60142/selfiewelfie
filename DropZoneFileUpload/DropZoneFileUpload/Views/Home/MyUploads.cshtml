@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "My Uploads";
+}
+
+<h2>My Uploads</h2>
+
+<div class="jumbotron">
+    <form action="~/Home/SaveUploadedFile" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneFormUpload">
+        <div class="fallback" >
+            <input name="file" type="file" multiple />
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+</div>
+
+@*<div class="">
+    <h3>Top 5 by me</h3>
+    <form action="~/Home/Get5AttachmentsByUserId" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm5">
+        <div class="fallback" disabled="true">
+            <input name="file" type="file" multiple/>
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+</div>
+<div disabled="true" >
+    <h3>All My Uploads By me</h3>
+    <form action="~/Home/GetAttachmentsByUserId" method="post" enctype="multipart/form-data" class="dropzone" id="dropzoneForm" >
+        <div class="fallback" disabled="true">
+            <input name="file" type="file" multiple/>
+            <input type="submit" value="Upload"/>
+        </div>
+    </form>
+</div>*@
+
+@section Scripts
+{
+    <script type="text/javascript">
+        //Dropzone.options.dropzoneForm5 = {
+        //    acceptedFiles: "image/*",
+        //    init: function() {
+        //        var thisDropzone = this;
+
+
+        //        $.getJSON("/home/Get5AttachmentsByUserId/").done(function (data) {
+        //            if (data.Data != '') {
+
+        //                $.each(data.Data, function(index, item) {
+        //                    //// Create the mock file:
+        //                    var mockFile = {
+        //                        name: item.AttachmentID,
+        //                        size: 12345
+        //                    };
+
+        //                    // Call the default addedfile event handler
+        //                    thisDropzone.emit("addedfile", mockFile);
+
+        //                    // And optionally show the thumbnail of the file:
+        //                    thisDropzone.emit("thumbnail", mockFile, item.Path);
+
+        //                    // If you use the maxFiles option, make sure you adjust it to the
+        //                    // correct amount:
+        //                    //var existingFileCount = 1; // The number of files already uploaded
+        //                    //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+        //                });
+        //            }
+
+        //        });
+
+
+        //    }
+        //};
+        //Dropzone.options.dropzoneForm = {
+        //    acceptedFiles: "image/*",
+        //    init: function() {
+        //        var thisDropzone = this;
+
+
+        //        $.getJSON("/home/GetAttachmentsByUserId/").done(function (data) {
+        //            if (data.Data != '') {
+
+        //                $.each(data.Data, function(index, item) {
+        //                    //// Create the mock file:
+        //                    var mockFile = {
+        //                        name: item.AttachmentID,
+        //                        size: 12345
+        //                    };
+
+        //                    // Call the default addedfile event handler
+        //                    thisDropzone.emit("addedfile", mockFile);
+
+        //                    // And optionally show the thumbnail of the file:
+        //                    thisDropzone.emit("thumbnail", mockFile, item.Path);
+
+        //                    // If you use the maxFiles option, make sure you adjust it to the
+        //                    // correct amount:
+        //                    //var existingFileCount = 1; // The number of files already uploaded
+        //                    //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+        //                });
+        //            }
+
+        //        });
+
+
+        //    }
+        //};
+        //File Upload response from the server
+        Dropzone.options.dropzoneFormUpload = {
+            maxFiles: 5,
+            init: function () {
+                this.on("maxfilesexceeded", function (data) {
+                    var res = eval('(' + data.xhr.responseText + ')');
+
+                });
+                this.on("addedfile", function (file) {
+
+                    // Create the remove button
+                    var removeButton = Dropzone.createElement("<button>Remove file</button>");
+
+
+                    // Capture the Dropzone instance as closure.
+                    var this = this;
+
+                    // Listen to the click event
+                    removeButton.addEventListener("click", function (e) {
+                        // Make sure the button click doesn't submit the form:
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // Remove the file preview.
+                        this.removeFile(file);
+                        // If you want to the delete the file on the server as well,
+                        // you can do the AJAX request here.
+                    });
+
+                    // Add the button to the file preview element.
+                    file.previewElement.appendChild(removeButton);
+                });
+                var thisDropzone = this;
+
+
+                //$.getJSON("/home/GetAttachments/").done(function (data) {
+                //    if (data.Data != '') {
+
+                //        $.each(data.Data, function (index, item) {
+                //            //// Create the mock file:
+                //            var mockFile = {
+                //                name: item.AttachmentID,
+                //                size: 12345
+                //            };
+
+                //            // Call the default addedfile event handler
+                //            thisDropzone.emit("addedfile", mockFile);
+
+                //            // And optionally show the thumbnail of the file:
+                //            thisDropzone.emit("thumbnail", mockFile, item.Path);
+
+                //            // If you use the maxFiles option, make sure you adjust it to the
+                //            // correct amount:
+                //            //var existingFileCount = 1; // The number of files already uploaded
+                //            //myDropzone.options.maxFiles = myDropzone.options.maxFiles - existingFileCount;
+                //        });
+                //    }
+
+                //});
+            }
+        };
+    </script>
+
+}
